@@ -1,11 +1,17 @@
+if (process.env.NODE_ENV != 'production') {
+  require('dotenv').config();
+  const dns = require("dns");
+  dns.setServers(["8.8.8.8", "8.8.4.4"]);
+}
+
 const mongoose = require("mongoose");
 const Listing = require("../models/listing.js");
 const initData = require("./data.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/AirBnB";
+const dbUrl = process.env.ATLASDB_URL;
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 }
 
 const seedDB = async () => {

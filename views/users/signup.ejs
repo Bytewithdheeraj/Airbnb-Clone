@@ -1,0 +1,63 @@
+<% layout("/layouts/boilerplate") %>
+<link rel="stylesheet" href="/CSS/signup.css" />
+
+<div class="signup-page-wrapper">
+    <div class="signup-bg">
+        <div class="signup-card">
+
+            <!-- Airbnb Logo -->
+            <img src="/Assets/airbnb.png" class="signup-logo" alt="logo" />
+
+            <h4 class="text-center fw-bold">Welcome to Airbnb</h4>
+
+            <form action="/signup" method="POST" class="needs-validation" novalidate>
+
+                <!-- Username -->
+                <div class="form-group">
+                    <input
+                        name="username"
+                        id="username"
+                        type="text"
+                        placeholder="Username"
+                        class="form-control form-control-lg"
+                        required
+                    />
+                    <div class="invalid-feedback">Please enter your username.</div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <input
+                        name="email"
+                        id="email"
+                        type="email"
+                        placeholder="Email"
+                        class="form-control form-control-lg"
+                        required
+                    />
+                    <div class="invalid-feedback">Please enter your email.</div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <input
+                        name="password"
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        class="form-control form-control-lg"
+                        required
+                    />
+                    <div class="invalid-feedback">Please enter your password.</div>
+                </div>
+
+                <button class="btn btn-danger w-100 fw-bold fs-5">Sign Up</button>
+
+                <p class="text-center text-muted signup-footer-text">
+                    Already have an account? <a href="/login" class="text-danger fw-semibold">Log in</a>
+                </p>
+
+            </form>
+        </div>
+    </div>
+</div>

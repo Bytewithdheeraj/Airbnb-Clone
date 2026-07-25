@@ -1,0 +1,172 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <h3>Edit Your Listing</h3>
+
+        <form 
+            method="POST" 
+            action="/listings/<%= listing._id %>?_method=PUT" 
+            novalidate 
+            class="needs-validation"
+            enctype="multipart/form-data"
+        >
+
+            <!-- Title -->
+            <div class="mb-3">
+                <label for="title" class="form-label">
+                    Title
+                </label>
+
+                <input 
+                    id="title"
+                    name="listing[title]" 
+                    value="<%= listing?.title || '' %>" 
+                    type="text" 
+                    class="form-control"
+                    placeholder="Enter title"
+                    required
+                />
+
+                <div class="valid-feedback">
+                    Title looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please enter a title.
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">
+                    Description
+                </label>
+
+                <textarea 
+                    id="description"
+                    name="listing[description]" 
+                    class="form-control"
+                    placeholder="Enter description"
+                    required
+                ><%= listing?.description || '' %></textarea>
+
+                <div class="invalid-feedback">
+                    Please enter description.
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+
+                <!-- Current Image Preview -->
+                <% if (listing?.image?.url) { %>
+                <div class="mb-2">
+                    <p class="text-muted small mb-1">Current Image:</p>
+                    <img 
+                        id="currentPreview"
+                        src="<%= listing.image.url %>" 
+                        alt="Current listing image"
+                        style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #dee2e6;"
+                    >
+                </div>
+                <% } %>
+
+                <input
+                    id="image"
+                    name="listing[image]"
+                    type="file"
+                    class="form-control"
+                    accept="image/*"
+                    onchange="previewImage(event)"
+                >
+
+                <!-- New Image Preview -->
+                <div class="mt-2" id="newPreviewContainer" style="display: none;">
+                    <p class="text-muted small mb-1">New Image Preview:</p>
+                    <img 
+                        id="newPreview"
+                        src="" 
+                        alt="New image preview"
+                        style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #dee2e6;"
+                    >
+                </div>
+            </div>
+
+            <div class="row g-3">
+
+                <!-- Price -->
+                <div class="col-md-4">
+                    <label for="price" class="form-label">
+                        Price
+                    </label>
+
+                    <input 
+                        id="price"
+                        name="listing[price]" 
+                        value="<%= listing?.price || '' %>" 
+                        type="number" 
+                        class="form-control"
+                        placeholder="Enter price"
+                        min="0"
+                        required
+                    />
+
+                    <div class="invalid-feedback">
+                        Please enter valid price.
+                    </div>
+                </div>
+
+                <!-- Country -->
+                <div class="col-md-8">
+                    <label for="country" class="form-label">
+                        Country
+                    </label>
+
+                    <input 
+                        id="country"
+                        name="listing[country]" 
+                        value="<%= listing?.country || '' %>"
+                        type="text" 
+                        class="form-control"
+                        placeholder="Enter country"
+                        required
+                    />
+
+                    <div class="invalid-feedback">
+                        Please enter country name.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3 mt-3">
+                <label for="location" class="form-label">
+                    Location
+                </label>
+
+                <input 
+                    id="location"
+                    name="listing[location]" 
+                    value="<%= listing?.location || '' %>"
+                    type="text" 
+                    class="form-control"
+                    placeholder="Enter location"
+                    required
+                />
+
+                <div class="invalid-feedback">
+                    Please enter location.
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark add-btn">
+                Update
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<script src="/js/ImgPreview.js"></script>

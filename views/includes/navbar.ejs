@@ -1,0 +1,79 @@
+<nav class="navbar bg-white border-bottom sticky-top">
+  <div class="container-fluid px-4 d-flex align-items-center">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center fw-medium flex-shrink-0" href="/listings" style="color: #FF385C;">
+      <img src="/Assets/airbnb.png" alt="Airbnb Logo" width="35" height="30" class="me-2">
+      Airbnb
+    </a>
+
+    <!-- Left Links - Desktop only -->
+    <div class="d-none d-md-flex navbar-nav ms-4 gap-2 flex-shrink-0">
+      <a class="nav-link px-3" href="/listings">Explore</a>
+    </div>
+
+    <!-- Search Bar - centered, takes remaining space -->
+    <div class="d-none d-md-flex justify-content-center flex-grow-1">
+      <form action="/listings" method="GET" class="search-bar">
+        <input
+          type="text"
+          name="search"
+          class="search-input"
+          placeholder="Search destinations"
+          autocomplete="off"
+        >
+        <button type="submit" class="search-btn">
+          <i class="bi bi-search"></i>
+          <span class="d-none d-lg-inline">Search</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Right Side -->
+    <div class="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
+
+      <!-- Host your home - Desktop only -->
+      <a href="/listings/new" class="d-none d-md-block nav-link px-3"><b>Become a host</b></a>
+
+      <!-- Hamburger + Avatar Dropdown -->
+      <div class="dropdown">
+        <button class="dropdown-toggle-btn" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-list fs-5"></i>
+          <div class="avatar-circle">
+            <i class="bi bi-person-fill"></i>
+          </div>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2">
+
+          <!-- Mobile only links -->
+          <div class="d-md-none">
+            <li><a class="dropdown-item py-2 px-3" href="/listings">Explore</a></li>
+            <li><a class="dropdown-item py-2 px-3" href="/listings/new">Host your home</a></li>
+            <li><hr class="dropdown-divider my-1"></li>
+          </div>
+
+          <% if (!currUser) { %>
+            <li>
+              <a class="dropdown-item rounded-3 py-2 px-3 fw-medium" href="/signup">
+                <i class="bi bi-person-plus me-2"></i>Sign up
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item rounded-3 py-2 px-3" href="/login">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Log in
+              </a>
+            </li>
+          <% } else { %>
+            <li>
+              <a class="dropdown-item rounded-3 py-2 px-3 logout-item" href="/logout">
+                <i class="bi bi-box-arrow-right me-2"></i>Log out
+              </a>
+            </li>
+          <% } %>
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nav>

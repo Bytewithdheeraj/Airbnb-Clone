@@ -1,0 +1,73 @@
+body:has(.login-page-wrapper) main.container {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+main.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page-wrapper {
+    width: 100vw;
+    flex: 1;
+    display: flex;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+}
+
+.login-bg {
+    flex: 1;
+    width: 100%;
+    background: url('/Assets/Travelbackground.webp') center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    position: relative;
+    z-index: 10;
+}
+
+.login-logo {
+    display: block;
+    margin: 0 auto 10px;
+    width: 42px;
+}
+
+.login-card h4 {
+    margin-bottom: 28px;
+}
+
+.login-card .form-group {
+    margin-bottom: 18px;
+}
+
+.login-card button {
+    margin-top: 8px;
+}
+
+.login-footer-text {
+    margin-top: 18px;
+    margin-bottom: 0;
+}
+body:has(.login-page-wrapper) footer {
+    margin-top: 0;
+}

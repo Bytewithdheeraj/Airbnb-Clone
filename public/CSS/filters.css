@@ -1,0 +1,498 @@
+/* ── Filter Row ───────────────────────────────────────────── */
+#filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 0;
+}
+
+#filter-row > * {
+    align-self: center;
+}
+
+/* ── Scroll Buttons ───────────────────────────────────────── */
+button.scroll-btn {
+    display: none; /* shown via JS when needed */
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+    max-width: 2rem;
+    padding: 0;
+    margin: 0;
+    border: 1.5px solid #d0d0d0;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: #222;
+    font-size: 0.7rem;
+    line-height: 1;
+    box-shadow: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease,
+        background-color 0.2s ease;
+}
+
+button.scroll-btn:hover {
+    border-color: #222;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: scale(1.04);
+}
+
+button.scroll-btn:active {
+    transform: scale(0.97);
+}
+
+button.scroll-btn:focus,
+button.scroll-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+    border-color: #222;
+}
+
+button.scroll-btn i {
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* ── Filters Strip ────────────────────────────────────────── */
+#filters {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    overflow-x: auto;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#filters::-webkit-scrollbar {
+    display: none;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    padding: 0.4rem 0.75rem 0.75rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    color: #717171;
+    min-width: 64px;
+    flex-shrink: 0;
+}
+
+.filter:hover {
+    border-bottom-color: #222;
+    color: #222;
+}
+
+.filter.active {
+    border-bottom-color: #222;
+    color: #222;
+}
+
+.filter div {
+    font-size: 1.4rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter p {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ── Filter Actions (Filters btn + Tax toggle) ────────────── */
+#filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    margin-left: 0.25rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid #e0e0e0;
+}
+
+/* Shared pill styling for both action controls */
+#filters-btn,
+#tax-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #222;
+    border: 1.5px solid #d0d0d0;
+    border-radius: 12px;
+    background: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+#filters-btn {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+#filters-btn:hover,
+#tax-toggle:hover {
+    border-color: #222;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f7f7f7;
+}
+
+#filters-btn:focus,
+#filters-btn:focus-visible {
+    outline: none;
+    border-color: #222;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+#tax-toggle label {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#tax-toggle .form-check.form-switch {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: unset;
+}
+
+#tax-toggle .form-check-input {
+    cursor: pointer;
+    width: 2.4em;
+    height: 1.3em;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+#tax-toggle .form-check-input:focus {
+    box-shadow: none;
+}
+
+/* ── Tax Info ─────────────────────────────────────────────── */
+.tax-info {
+    font-size: 0.82rem;
+    color: #717171;
+}
+
+/* ── No Results ───────────────────────────────────────────── */
+.no-results {
+    text-align: center;
+    padding: 3rem 0;
+    color: #717171;
+}
+
+.no-results i {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.no-results a {
+    color: #222;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* ── Listing Grid spacing ─────────────────────────────────── */
+.listings-grid {
+    margin-top: 0.5rem;
+}
+
+.listings-grid > .col {
+    padding: 0.6rem;
+}
+
+/* 1 card per row on mobile (Bootstrap row-cols-sm-1 skips xs) */
+@media (max-width: 575.98px) {
+    .listings-grid > .col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .listings-grid .card-img-top {
+        height: 16rem;
+    }
+}
+
+/* ── Listing Cards ────────────────────────────────────────── */
+.listing-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.listings-grid .card {
+    border: none;
+    border-radius: 1rem;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.2s ease;
+    margin-bottom: 2rem;
+}
+
+.listings-grid .card:hover {
+    transform: translateY(-4px);
+}
+
+.listings-grid .card-img-top {
+    width: 100%;
+    height: 13rem;
+    object-fit: cover;
+    display: block;
+    border-radius: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.listings-grid .card:hover .card-img-top {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.listings-grid .card-body {
+    padding: 0.6rem 0.1rem 0;
+}
+
+.listings-grid .card-text {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #222;
+    font-weight: 400;
+}
+
+.listings-grid .card-text b {
+    font-weight: 600;
+    font-size: 0.97rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 992px) {
+    #filter-row {
+        flex-wrap: wrap;
+        row-gap: 0.75rem;
+    }
+
+    #filters {
+        order: 2;
+        flex: 1 1 calc(100% - 5rem);
+    }
+
+    button.scroll-btn {
+        order: 1;
+    }
+
+    #scroll-left {
+        order: 1;
+    }
+
+    #scroll-right {
+        order: 3;
+    }
+
+    #filter-actions {
+        order: 4;
+        width: 100%;
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 0.75rem;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 576px) {
+    #filter-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+    }
+
+    #filters-btn,
+    #tax-toggle {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    button.scroll-btn {
+        width: 1.75rem;
+        height: 1.75rem;
+        min-width: 1.75rem;
+        max-width: 1.75rem;
+        font-size: 0.65rem;
+    }
+}
+/* Filter button popup */
+#filter-actions {
+    position: relative; /* ADD THIS */
+}
+
+.destination-popup {
+    position: absolute;
+    top: 48px;      /* was 60px — sits right below the button now */
+    right: 0;        /* was right: 20px — anchors to the button's own container */
+    width: 280px;
+    max-height: 360px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.destination-popup.d-none { display: none; }
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.popup-header h6 { margin: 0; font-weight: 600; }
+
+#close-popup-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #555;
+}
+
+#popup-search-input {
+    margin: 10px 16px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+#destination-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 8px 10px;
+    overflow-y: auto;
+}
+
+#destination-list li {
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#destination-list li:hover {
+    background: #f7f7f7;
+}
+
+#destination-list .no-match {
+    color: #999;
+    padding: 10px 12px;
+    cursor: default;
+}
+.selected-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 16px;
+    margin-top: 8px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffe4e9;
+    color: #FF385C;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 16px;
+}
+
+.chip button {
+    background: none;
+    border: none;
+    color: #FF385C;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
+}
+
+.popup-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-top: 1px solid #eee;
+}
+
+.popup-clear-btn {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.popup-apply-btn {
+    background: #FF385C;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.popup-apply-btn:disabled {
+    background: #f3c4cd;
+    cursor: not-allowed;
+}

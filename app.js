@@ -22,15 +22,21 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+const bookingRouter = require("./routes/booking");
+const paymentRouter = require("./routes/payment");
+require("./passport");
+
+
 // const MONGO_URL = "mongodb://127.0.0.1:27017/AirBnB";
 const dbUrl = process.env.ATLASDB_URL;
+const dbName = process.env.DB_NAME || "AirBnB";
 
 main()
     .then(() => console.log("Connected to DB"))
     .catch((err) => console.log(err));
 
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(dbUrl, { dbName });
 }
 
 app.set("view engine", "ejs");
@@ -45,6 +51,7 @@ app.set("trust proxy", 1);
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
+    dbName,
     crypto: {
         secret: process.env.SESSION_SECRET
     },
@@ -92,6 +99,8 @@ app.get("/", (req, res) => {
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
+app.use("/bookings", bookingRouter);
+app.use("/payments", paymentRouter);
 app.use("/", userRouter);
 
 app.use((req, res, next) => {

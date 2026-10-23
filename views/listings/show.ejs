@@ -11,9 +11,11 @@
 
       <!-- Image -->
       <img
-        src="<%= listing.image?.url || 'https://via.placeholder.com/600x300' %>"
+        src="<%= listing.image?.url || '/images/listing-placeholder.svg' %>"
         class="card-img-top show-img"
         alt="listing_image"
+        data-image-fallback
+        data-image-index="0"
       >
 
       <!-- Content -->
@@ -40,7 +42,13 @@
           </li>
         </ul>
 
-        <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+        <div class="d-flex justify-content-center mb-4">
+          <a href="/bookings/<%= listing._id %>/new" class="btn book-now-btn px-5 py-3">
+            Book Now
+          </a>
+        </div>
+
+        <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
         <div class="d-flex gap-2">
           <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-dark">Edit</a>
           <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
@@ -66,7 +74,7 @@
       </div>
     </div>
 
-    <% if(currUser && !currUser._id.equals(listing.owner._id)) { %>
+    <% if(currUser && (!listing.owner || !currUser._id.equals(listing.owner._id))) { %>
     <!-- Review Form -->
     <div class="card shadow-sm border-0 mb-4">
       <div class="card-body p-4">

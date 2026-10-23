@@ -27,7 +27,7 @@ module.exports.isOwner = async (req, res, next) => {
         return res.redirect("/listings");
     }
 
-    if (!listing.owner.equals(req.user._id)) {
+    if (!listing.owner || !listing.owner.equals(req.user._id)) {
         req.flash("error", "Access denied! Only the owner can edit this listing.");
         return res.redirect(`/listings/${id}`);
     }

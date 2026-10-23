@@ -267,6 +267,24 @@ footer {
   height: 40vh;
 }
 
+.book-now-btn {
+  background-color: #ff385c !important;
+  border: 1px solid #ff385c !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.book-now-btn:hover,
+.book-now-btn:focus-visible {
+  background-color: #e31c5f !important;
+  border-color: #e31c5f !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(227, 28, 95, 0.24);
+}
+
 .review-card {
     transition: all 0.2s ease;
     cursor: pointer;

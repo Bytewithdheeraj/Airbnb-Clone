@@ -52,7 +52,11 @@
     </div>
 
     <div id="filter-actions">
-        <!-- Destination Popup -->
+    <button id="filters-btn" type="button" aria-label="Search by destination">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Filters</span>
+    </button>
+    <!-- Destination Popup -->
 <div id="destination-popup" class="destination-popup d-none">
     <div class="destination-popup-content">
         <div class="popup-header">
@@ -100,7 +104,7 @@
     </div>
 <% } else { %>
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 listings-grid">
-        <% for(let listing of allListings){ %>
+        <% for(let [index, listing] of allListings.entries()){ %>
             <div class="col">
                 <a href="/listings/<%= listing._id %>" class="listing-link">
                     <div class="card h-100">
@@ -108,6 +112,8 @@
                             src="<%= listing.image?.url || '/images/default.jpg' %>"
                             class="card-img-top"
                             alt="listing_image"
+                            data-image-fallback
+                            data-image-index="<%= index %>"
                         >
                         <div class="card-body">
                             <p class="card-text">
@@ -141,11 +147,13 @@
 
     // Tax toggle
     const taxSwitch = document.getElementById("flexSwitchCheckDefault");
-    taxSwitch.addEventListener("change", () => {
-        document.querySelectorAll(".tax-info").forEach(info => {
-            info.style.display = taxSwitch.checked ? "inline" : "none";
+    if (taxSwitch) {
+        taxSwitch.addEventListener("change", () => {
+            document.querySelectorAll(".tax-info").forEach(info => {
+                info.style.display = taxSwitch.checked ? "inline" : "none";
+            });
         });
-    });
+    }
 
     // Scroll buttons (guarded — these elements may not exist on this page)
     const filtersEl = document.getElementById("filters");
@@ -185,6 +193,7 @@ const clearBtn = document.getElementById("clear-selection-btn");
 let allDestinations = [];
 let selectedDestinations = [];
 
+if (filtersBtn && popup && popupSearchInput && destinationList && closePopupBtn && selectedChipsEl && applyBtn && clearBtn) {
 filtersBtn.addEventListener("click", async (e) => {
     e.stopPropagation();
     popup.classList.toggle("d-none");
@@ -278,4 +287,5 @@ applyBtn.addEventListener("click", () => {
     const query = selectedDestinations.join(",");
     window.location.href = `/listings?search=${encodeURIComponent(query)}`;
 });
+}
 </script>

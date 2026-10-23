@@ -277,6 +277,64 @@ a.nav-link[href="/listings"]:hover {
   background-color: #fff5f5 !important;
   color: #b00000 !important;
 }
+.profile-dropdown {
+  width: 280px;
+  max-width: calc(100vw - 24px);
+  padding: 10px !important;
+}
+.profile-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 8px 6px 12px !important;
+}
+.profile-avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #333;
+  font-size: 1.2rem;
+}
+.profile-details {
+  flex: 1;
+  min-width: 0;
+}
+.profile-name,
+.profile-email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.profile-name {
+  color: #222;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.profile-email {
+  margin-top: 2px;
+  color: #717171;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+.profile-dropdown .dropdown-divider {
+  margin: 4px 0 6px !important;
+}
+.profile-dropdown .profile-menu-item {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+}
+.profile-dropdown .profile-menu-item i {
+  width: 18px;
+  text-align: center;
+}
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 767.98px) {
   .navbar {
@@ -300,6 +358,9 @@ a.nav-link[href="/listings"]:hover {
   }
   .dropdown-menu {
     min-width: 200px;
+  }
+  .profile-dropdown {
+    min-width: 0;
   }
 }
 @media (max-width: 991.98px) {

@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-8">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-4 p-md-5">
+        <div class="text-center mb-4">
+          <div class="rounded-circle bg-success-subtle text-success d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 72px; height: 72px;">
+            <i class="fa-solid fa-check fa-2x"></i>
+          </div>
+          <h1 class="h3 fw-bold mb-2">You're all set!</h1>
+          <p class="text-muted mb-0">Your payment was verified and your stay is confirmed.</p>
+        </div>
+
+        <div class="border rounded-3 p-3 p-md-4">
+          <% if (booking.listing) { %>
+            <h2 class="h5 fw-bold mb-3"><%= booking.listing.title %></h2>
+            <p class="text-muted mb-3"><%= booking.listing.location %><% if (booking.listing.country) { %>, <%= booking.listing.country %><% } %></p>
+          <% } else { %>
+            <h2 class="h5 fw-bold mb-3">Your confirmed stay</h2>
+          <% } %>
+
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+              <div class="small text-muted">Check-in</div>
+              <div class="fw-semibold"><%= booking.checkIn.toLocaleDateString("en-IN", { dateStyle: "medium", timeZone: "UTC" }) %></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="small text-muted">Check-out</div>
+              <div class="fw-semibold"><%= booking.checkOut.toLocaleDateString("en-IN", { dateStyle: "medium", timeZone: "UTC" }) %></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="small text-muted">Guests</div>
+              <div class="fw-semibold"><%= booking.guests %></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="small text-muted">Amount paid</div>
+              <div class="fw-semibold">₹<%= (payment.amount / 100).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></div>
+            </div>
+          </div>
+
+          <div class="border-top pt-3 small text-muted">
+            Payment ID: <span class="text-dark"><%= payment.razorpayPaymentId %></span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+          <a href="/bookings/my-trips" class="btn book-now-btn px-4 py-2">View my trips</a>
+          <% if (booking.listing) { %>
+            <a href="/listings/<%= booking.listing._id %>" class="btn btn-outline-secondary px-4 py-2">View listing</a>
+          <% } else { %>
+            <a href="/listings" class="btn btn-outline-secondary px-4 py-2">Browse stays</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

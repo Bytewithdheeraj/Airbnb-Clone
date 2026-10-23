@@ -24,14 +24,19 @@ module.exports.index = async (req, res) => {
     if (category) {
         allListings = await Listing.find({ category });
     } else if (search && search.trim() !== "") {
-        const regex = new RegExp(search.trim(), "i");
+        const searchTerms = search.split(",").map((term) => term.trim()).filter(Boolean);
+        const escapedTerms = searchTerms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
         allListings = await Listing.find({
-            $or: [
-                { title: regex },
-                { location: regex },
-                { country: regex },
-                { category: regex }
-            ]
+            $or: escapedTerms.flatMap((term) => {
+                const regex = new RegExp(term, "i");
+                return [
+                    { title: regex },
+                    { location: regex },
+                    { country: regex },
+                    { category: regex },
+                    { state: regex }
+                ];
+            })
         });
     } else {
         allListings = await Listing.find({});

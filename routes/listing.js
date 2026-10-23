@@ -23,6 +23,9 @@ router.route("/")
 // New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+// Destinations for filter popup
+router.get("/destinations", wrapAsync(listingController.getDestinations));
+
 // Show, Update & Delete Routes
 router.route("/:id")
     .get(wrapAsync(listingController.showListing))
@@ -31,8 +34,5 @@ router.route("/:id")
 
 // Edit Route
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
-
-// Destinations for filter popup
-router.get("/destinations", wrapAsync(listingController.getDestinations));
 
 module.exports = router;

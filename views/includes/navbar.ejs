@@ -37,13 +37,13 @@
 
       <!-- Hamburger + Avatar Dropdown -->
       <div class="dropdown">
-        <button class="dropdown-toggle-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="dropdown-toggle-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open account menu">
           <i class="bi bi-list fs-5"></i>
           <div class="avatar-circle">
             <i class="bi bi-person-fill"></i>
           </div>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2">
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2<%= currUser ? ' profile-dropdown' : '' %>">
 
           <!-- Mobile only links -->
           <div class="d-md-none">
@@ -64,8 +64,23 @@
               </a>
             </li>
           <% } else { %>
+            <li class="profile-summary">
+              <div class="profile-avatar">
+                  <i class="bi bi-person-fill"></i>
+              </div>
+              <div class="profile-details">
+                <div class="profile-name"><%= currUser.username || "Your profile" %></div>
+                <div class="profile-email"><%= currUser.email %></div>
+                </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
             <li>
-              <a class="dropdown-item rounded-3 py-2 px-3 logout-item" href="/logout">
+              <a class="dropdown-item profile-menu-item" href="/bookings/my-trips">
+                <i class="bi bi-suitcase2 me-2"></i>My trips
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item profile-menu-item logout-item" href="/logout">
                 <i class="bi bi-box-arrow-right me-2"></i>Log out
               </a>
             </li>
